@@ -1,0 +1,904 @@
+{
+  "dataSources": {
+    "ds_iqVGOBYY": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.103 - Gi0/0 (input)\" where index=netmetrics AND host=198.18.180.103:161 AND ifDescr=\"GigabitEthernet0/0\"",
+        "queryParameters": {
+          "earliest": "-60m@m",
+          "latest": "now"
+        }
+      },
+      "name": "Single value search 12"
+    },
+    "ds_aKltQwiw": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats chart=t rate_avg(sc4snmp.IF-MIB.ifHCInUcastPkts) AS \"198.18.180.103 Average PPS\" where index=netmetrics AND host=198.18.180.103:161 by ifName span=1m",
+        "queryParameters": {
+          "earliest": "-60m@m",
+          "latest": "now"
+        }
+      },
+      "name": "Line chart search"
+    },
+    "ds_UFYtEEr7": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats chart=t rate_avg(sc4snmp.IF-MIB.ifHCInUcastPkts) AS \"198.18.180.102 Average PPS\" where index=netmetrics AND host=198.18.180.102:161 by ifName span=1m",
+        "queryParameters": {
+          "earliest": "-60m@m",
+          "latest": "now"
+        }
+      },
+      "name": "198.18.180.102 - Average Interface PPS search"
+    },
+    "ds_7szFC5IN": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats chart=t rate_avg(sc4snmp.IF-MIB.ifHCInUcastPkts) AS \"198.18.180.101 - Gi0/2\" where index=netmetrics AND host=198.18.180.101:161 by ifName span=1m",
+        "queryParameters": {
+          "earliest": "-60m",
+          "latest": "now"
+        }
+      },
+      "name": "Line chart search"
+    },
+    "ds_cTENMmXk": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.102 - Gi0/0 (input)\" where index=netmetrics AND host=198.18.180.102:161 AND ifDescr=\"GigabitEthernet0/0\"",
+        "queryParameters": {
+          "earliest": "-24h@h",
+          "latest": "now"
+        }
+      },
+      "name": "198.18.180.102 Gi0-0"
+    },
+    "ds_h1xKeLVt": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.102 - Gi0/0\" where index=netmetrics AND host=198.18.180.102:161 AND ifDescr=\"GigabitEthernet0/0\"",
+        "queryParameters": {
+          "earliest": "-24h@h",
+          "latest": "now"
+        }
+      },
+      "name": "Table search"
+    },
+    "ds_Jvz4Ql5N": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.101 - Gi0/0 (input)\" where index=netmetrics AND host=198.18.180.101:161 AND ifDescr=\"GigabitEthernet0/0\"",
+        "queryParameters": {
+          "earliest": "-60m@m",
+          "latest": "now"
+        }
+      },
+      "name": "Single value search"
+    },
+    "ds_Tddb17Pc": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mpreview index=netmetrics | spath ifDescr | search ifDescr!=\"GigabitEthernet0/3\" | spath ifDescr | search ifDescr!=Null0 | spath ifName | search ifName!=Lo0 host=\"198.18.180.101:161\" | delta metric_name:sc4snmp.IF-MIB.ifInUcastPkts as PP30S p=1 | eval absPPS = abs(PP30S)/30 | timechart values(absPPS) by ifName",
+        "queryParameters": {
+          "earliest": "-60m@m",
+          "latest": "now"
+        }
+      },
+      "name": "PPS search"
+    },
+    "ds_W7UMMs4h": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mpreview index=netmetrics | spath ifDescr | search ifDescr!=\"GigabitEthernet0/3\" | spath ifDescr | search ifDescr!=Null0 | spath ifName | search ifName!=Lo0 host=\"198.18.180.101:161\" | timechart span=30s values(metric_name:sc4snmp.IF-MIB.ifHCInUcastPkts) by ifName",
+        "queryParameters": {
+          "earliest": "-60m@m",
+          "latest": "now"
+        }
+      },
+      "name": "Table search"
+    },
+    "ds_ZotI84ZB": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mpreview index=netmetrics | fields \"_time\", \"host\", \"ifName\", \"metric_name:sc4snmp.IF-MIB.ifInUcastPkts\", \"metric_name:sc4snmp.IF-MIB.ifOutUcastPkts\" | fields \"_time\", \"host\", \"ifName\", \"metric_name:sc4snmp.IF-MIB.ifInUcastPkts\", \"metric_name:sc4snmp.IF-MIB.ifOutUcastPkts\" | chart values(metric_name:sc4snmp.IF-MIB.ifInUcastPkts) by host, ifName",
+        "queryParameters": {
+          "earliest": "-24h@h",
+          "latest": "now"
+        }
+      },
+      "name": "Table search"
+    },
+    "ds_l6X1RIOU": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mpreview index=netmetrics | fields \"_time\", \"host\", \"ifName\", \"metric_name:sc4snmp.IF-MIB.ifInUcastPkts\", \"metric_name:sc4snmp.IF-MIB.ifOutUcastPkts\" | fields \"_time\", \"host\", \"ifName\", \"metric_name:sc4snmp.IF-MIB.ifInUcastPkts\", \"metric_name:sc4snmp.IF-MIB.ifOutUcastPkts\"",
+        "queryParameters": {
+          "earliest": "-24h@h",
+          "latest": "now"
+        }
+      },
+      "name": "Events 1 search"
+    },
+    "ds_4P6s1Gtu": {
+      "type": "ds.chain",
+      "options": {
+        "query": "| fieldsummary maxvals=10",
+        "extend": "ds_l6X1RIOU"
+      },
+      "name": "Events 2 search"
+    },
+    "ds_jaJQyWql_ds_Jvz4Ql5N": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.101 - Gi0/1 (input)\" where index=netmetrics AND host=198.18.180.101:161 AND ifDescr=\"GigabitEthernet0/1\"",
+        "queryParameters": {
+          "earliest": "-60m@m",
+          "latest": "now"
+        }
+      },
+      "name": "Single value search copy 1"
+    },
+    "ds_yKaplJZR_ds_jaJQyWql_ds_Jvz4Ql5N": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.101 - Gi0/2 (input)\" where index=netmetrics AND host=198.18.180.101:161 AND ifDescr=\"GigabitEthernet0/2\"",
+        "queryParameters": {
+          "earliest": "-60m@m",
+          "latest": "now"
+        }
+      },
+      "name": "Single value search copy 2"
+    },
+    "ds_93McA2yx_ds_h1xKeLVt": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.102 - Gi0/0\" where index=netmetrics AND host=198.18.180.102:161 AND ifDescr=\"GigabitEthernet0/0\"",
+        "queryParameters": {
+          "earliest": "-24h@h",
+          "latest": "now"
+        }
+      },
+      "name": "Table search copy 1"
+    },
+    "ds_bMfn5Ng4_ds_93McA2yx_ds_h1xKeLVt": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.102 - Gi0/0\" where index=netmetrics AND host=198.18.180.102:161 AND ifDescr=\"GigabitEthernet0/0\"",
+        "queryParameters": {
+          "earliest": "-24h@h",
+          "latest": "now"
+        }
+      },
+      "name": "Table search copy 2"
+    },
+    "ds_CkWAN4PE_ds_cTENMmXk": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.102 - Gi0/1 (input)\" where index=netmetrics AND host=198.18.180.102:161 AND ifDescr=\"GigabitEthernet0/1\"",
+        "queryParameters": {
+          "earliest": "-24h@h",
+          "latest": "now"
+        }
+      },
+      "name": "Single value search copy 3"
+    },
+    "ds_Yfm48MhZ_ds_CkWAN4PE_ds_cTENMmXk": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.102 - Gi0/2 (input)\" where index=netmetrics AND host=198.18.180.102:161 AND ifDescr=\"GigabitEthernet0/2\"",
+        "queryParameters": {
+          "earliest": "-24h@h",
+          "latest": "now"
+        }
+      },
+      "name": "Single value search copy 4"
+    },
+    "ds_s6auV9cp_ds_7szFC5IN": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats chart=t rate_avg(sc4snmp.IF-MIB.ifHCInUcastPkts) AS \"198.18.180.101 - Gi0/2\" where index=netmetrics AND host=198.18.180.101:161 by ifName span=1m",
+        "queryParameters": {
+          "earliest": "-60m",
+          "latest": "now"
+        }
+      },
+      "name": "Line chart search copy 1"
+    },
+    "ds_MJEDPNYz_ds_iqVGOBYY": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.103 - Gi0/1 (input)\" where index=netmetrics AND host=198.18.180.103:161 AND ifDescr=\"GigabitEthernet0/1\"",
+        "queryParameters": {
+          "earliest": "-60m@m",
+          "latest": "now"
+        }
+      },
+      "name": "Single value search copy 5"
+    },
+    "ds_vw0RwK2t_ds_MJEDPNYz_ds_iqVGOBYY": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.103 - Gi0/2 (input)\" where index=netmetrics AND host=198.18.180.103:161 AND ifDescr=\"GigabitEthernet0/2\"",
+        "queryParameters": {
+          "earliest": "-60m@m",
+          "latest": "now"
+        }
+      },
+      "name": "Single value search copy 6"
+    },
+    "ds_xkM9hC40_ds_jaJQyWql_ds_Jvz4Ql5N": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.102 - Gi0/0 (input)\" where index=netmetrics AND host=198.18.180.102:161 AND ifDescr=\"GigabitEthernet0/0\"",
+        "queryParameters": {
+          "earliest": "-60m@m",
+          "latest": "now"
+        }
+      },
+      "name": "Single value search copy 7"
+    },
+    "ds_0GrGqlRn_ds_xkM9hC40_ds_jaJQyWql_ds_Jvz4Ql5N": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.102 - Gi0/1 (input)\" where index=netmetrics AND host=198.18.180.102:161 AND ifDescr=\"GigabitEthernet0/1\"",
+        "queryParameters": {
+          "earliest": "-60m@m",
+          "latest": "now"
+        }
+      },
+      "name": "Single value search copy 8"
+    },
+    "ds_VlK6OnKL_ds_0GrGqlRn_ds_xkM9hC40_ds_jaJQyWql_ds_Jvz4Ql5N": {
+      "type": "ds.search",
+      "options": {
+        "query": "| mstats rate(sc4snmp.IF-MIB.ifInUcastPkts) AS \"198.18.180.102 - Gi0/2 (input)\" where index=netmetrics AND host=198.18.180.102:161 AND ifDescr=\"GigabitEthernet0/2\"",
+        "queryParameters": {
+          "earliest": "-60m@m",
+          "latest": "now"
+        }
+      },
+      "name": "Single value search copy 9"
+    }
+  },
+  "visualizations": {
+    "viz_spZKQcnU": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 3,
+        "sparklineDisplay": "below",
+        "trendDisplay": "absolute",
+        "unit": "PPS",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "majorColor": "#171d21",
+        "splitByLayout": "trellis",
+        "trellisMinColumnWidth": 160,
+        "trellisRowHeight": 90
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 100,
+            "value": "#dc4e41"
+          },
+          {
+            "from": 70,
+            "to": 100,
+            "value": "#f1813f"
+          },
+          {
+            "from": 30,
+            "to": 70,
+            "value": "#f8be34"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "value": "#0877a6"
+          },
+          {
+            "to": 0,
+            "value": "#53a051"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_iqVGOBYY"
+      }
+    },
+    "viz_pCfxClhO": {
+      "type": "splunk.line",
+      "options": {
+        "yAxisAbbreviation": "auto",
+        "y2AxisAbbreviation": "auto",
+        "showRoundedY2AxisLabels": false,
+        "legendTruncation": "ellipsisMiddle",
+        "showY2MajorGridLines": true,
+        "xAxisLabelRotation": 0,
+        "xAxisTitleVisibility": "show",
+        "yAxisTitleText": "PPS",
+        "yAxisTitleVisibility": "show",
+        "y2AxisTitleVisibility": "show",
+        "yAxisScale": "linear",
+        "showOverlayY2Axis": false,
+        "y2AxisScale": "inherit",
+        "nullValueDisplay": "connect",
+        "dataValuesDisplay": "off",
+        "showSplitSeries": false,
+        "showIndependentYRanges": false,
+        "legendMode": "standard",
+        "legendDisplay": "right",
+        "lineWidth": 2
+      },
+      "dataSources": {
+        "primary": "ds_aKltQwiw"
+      },
+      "title": "198.18.180.103 Average Interface PPS (input)"
+    },
+    "viz_5MEYLTR3": {
+      "type": "splunk.line",
+      "options": {
+        "yAxisAbbreviation": "auto",
+        "y2AxisAbbreviation": "auto",
+        "showRoundedY2AxisLabels": false,
+        "legendTruncation": "ellipsisMiddle",
+        "showY2MajorGridLines": true,
+        "xAxisLabelRotation": 0,
+        "xAxisTitleVisibility": "show",
+        "yAxisTitleText": "PPS",
+        "yAxisTitleVisibility": "show",
+        "y2AxisTitleVisibility": "show",
+        "yAxisScale": "linear",
+        "showOverlayY2Axis": false,
+        "y2AxisScale": "inherit",
+        "nullValueDisplay": "connect",
+        "dataValuesDisplay": "off",
+        "showSplitSeries": false,
+        "showIndependentYRanges": false,
+        "legendMode": "standard",
+        "legendDisplay": "right",
+        "lineWidth": 2
+      },
+      "dataSources": {
+        "primary": "ds_UFYtEEr7"
+      },
+      "title": "198.18.180.102 - Average Interface PPS (input)"
+    },
+    "viz_UTp5OsIz": {
+      "type": "splunk.line",
+      "options": {
+        "yAxisAbbreviation": "auto",
+        "y2AxisAbbreviation": "auto",
+        "showRoundedY2AxisLabels": false,
+        "legendTruncation": "ellipsisMiddle",
+        "showY2MajorGridLines": true,
+        "xAxisLabelRotation": 0,
+        "xAxisTitleVisibility": "show",
+        "yAxisTitleVisibility": "show",
+        "y2AxisTitleVisibility": "show",
+        "yAxisScale": "linear",
+        "showOverlayY2Axis": false,
+        "y2AxisScale": "inherit",
+        "nullValueDisplay": "gaps",
+        "dataValuesDisplay": "off",
+        "showSplitSeries": false,
+        "showIndependentYRanges": false,
+        "legendMode": "standard",
+        "legendDisplay": "right",
+        "lineWidth": 2,
+        "yAxisTitleText": "PPS"
+      },
+      "dataSources": {
+        "primary": "ds_7szFC5IN"
+      },
+      "title": "198.18.180.101 - Average Interface PPS (input)"
+    },
+    "viz_8LmK6WrP": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 3,
+        "sparklineDisplay": "below",
+        "trendDisplay": "absolute",
+        "unit": "PPS",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "majorColor": "#171d21",
+        "splitByLayout": "trellis",
+        "trellisMinColumnWidth": 160,
+        "trellisRowHeight": 90
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 100,
+            "value": "#dc4e41"
+          },
+          {
+            "from": 70,
+            "to": 100,
+            "value": "#f1813f"
+          },
+          {
+            "from": 30,
+            "to": 70,
+            "value": "#f8be34"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "value": "#0877a6"
+          },
+          {
+            "to": 0,
+            "value": "#53a051"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_Jvz4Ql5N"
+      }
+    },
+    "viz_jxeXFIrb": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 3,
+        "sparklineDisplay": "below",
+        "trendDisplay": "absolute",
+        "unit": "PPS",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "majorColor": "#171d21",
+        "splitByLayout": "trellis",
+        "trellisMinColumnWidth": 160,
+        "trellisRowHeight": 90
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 100,
+            "value": "#dc4e41"
+          },
+          {
+            "from": 70,
+            "to": 100,
+            "value": "#f1813f"
+          },
+          {
+            "from": 30,
+            "to": 70,
+            "value": "#f8be34"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "value": "#0877a6"
+          },
+          {
+            "to": 0,
+            "value": "#53a051"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_jaJQyWql_ds_Jvz4Ql5N"
+      }
+    },
+    "viz_jh03G22a": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 3,
+        "sparklineDisplay": "below",
+        "trendDisplay": "absolute",
+        "unit": "PPS",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "majorColor": "#171d21",
+        "splitByLayout": "trellis",
+        "trellisMinColumnWidth": 160,
+        "trellisRowHeight": 90
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 100,
+            "value": "#dc4e41"
+          },
+          {
+            "from": 70,
+            "to": 100,
+            "value": "#f1813f"
+          },
+          {
+            "from": 30,
+            "to": 70,
+            "value": "#f8be34"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "value": "#0877a6"
+          },
+          {
+            "to": 0,
+            "value": "#53a051"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_yKaplJZR_ds_jaJQyWql_ds_Jvz4Ql5N"
+      }
+    },
+    "viz_M6ovILcp": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 3,
+        "sparklineDisplay": "below",
+        "trendDisplay": "absolute",
+        "unit": "PPS",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "majorColor": "#171d21",
+        "splitByLayout": "trellis",
+        "trellisMinColumnWidth": 160,
+        "trellisRowHeight": 90
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 100,
+            "value": "#dc4e41"
+          },
+          {
+            "from": 70,
+            "to": 100,
+            "value": "#f1813f"
+          },
+          {
+            "from": 30,
+            "to": 70,
+            "value": "#f8be34"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "value": "#0877a6"
+          },
+          {
+            "to": 0,
+            "value": "#53a051"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_MJEDPNYz_ds_iqVGOBYY"
+      }
+    },
+    "viz_E5YwuXmv": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 3,
+        "sparklineDisplay": "below",
+        "trendDisplay": "absolute",
+        "unit": "PPS",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "majorColor": "#171d21",
+        "splitByLayout": "trellis",
+        "trellisMinColumnWidth": 160,
+        "trellisRowHeight": 90
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 100,
+            "value": "#dc4e41"
+          },
+          {
+            "from": 70,
+            "to": 100,
+            "value": "#f1813f"
+          },
+          {
+            "from": 30,
+            "to": 70,
+            "value": "#f8be34"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "value": "#0877a6"
+          },
+          {
+            "to": 0,
+            "value": "#53a051"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_vw0RwK2t_ds_MJEDPNYz_ds_iqVGOBYY"
+      }
+    },
+    "viz_wSvcqgY0": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 3,
+        "sparklineDisplay": "below",
+        "trendDisplay": "absolute",
+        "unit": "PPS",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "majorColor": "#171d21",
+        "splitByLayout": "trellis",
+        "trellisMinColumnWidth": 160,
+        "trellisRowHeight": 90
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 100,
+            "value": "#dc4e41"
+          },
+          {
+            "from": 70,
+            "to": 100,
+            "value": "#f1813f"
+          },
+          {
+            "from": 30,
+            "to": 70,
+            "value": "#f8be34"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "value": "#0877a6"
+          },
+          {
+            "to": 0,
+            "value": "#53a051"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_xkM9hC40_ds_jaJQyWql_ds_Jvz4Ql5N"
+      }
+    },
+    "viz_pssIpM9c": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 3,
+        "sparklineDisplay": "below",
+        "trendDisplay": "absolute",
+        "unit": "PPS",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "majorColor": "#171d21",
+        "splitByLayout": "trellis",
+        "trellisMinColumnWidth": 160,
+        "trellisRowHeight": 90
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 100,
+            "value": "#dc4e41"
+          },
+          {
+            "from": 70,
+            "to": 100,
+            "value": "#f1813f"
+          },
+          {
+            "from": 30,
+            "to": 70,
+            "value": "#f8be34"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "value": "#0877a6"
+          },
+          {
+            "to": 0,
+            "value": "#53a051"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_0GrGqlRn_ds_xkM9hC40_ds_jaJQyWql_ds_Jvz4Ql5N"
+      }
+    },
+    "viz_xkPEf5Ub": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "numberPrecision": 3,
+        "sparklineDisplay": "below",
+        "trendDisplay": "absolute",
+        "unit": "PPS",
+        "unitPosition": "after",
+        "shouldUseThousandSeparators": true,
+        "majorColor": "#171d21",
+        "splitByLayout": "trellis",
+        "trellisMinColumnWidth": 160,
+        "trellisRowHeight": 90
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 100,
+            "value": "#dc4e41"
+          },
+          {
+            "from": 70,
+            "to": 100,
+            "value": "#f1813f"
+          },
+          {
+            "from": 30,
+            "to": 70,
+            "value": "#f8be34"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "value": "#0877a6"
+          },
+          {
+            "to": 0,
+            "value": "#53a051"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_VlK6OnKL_ds_0GrGqlRn_ds_xkM9hC40_ds_jaJQyWql_ds_Jvz4Ql5N"
+      }
+    }
+  },
+  "inputs": {},
+  "layout": {
+    "type": "grid",
+    "options": {
+      "width": 1440,
+      "height": 960
+    },
+    "structure": [
+      {
+        "item": "viz_UTp5OsIz",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 317
+        }
+      },
+      {
+        "item": "viz_8LmK6WrP",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 317,
+          "w": 551,
+          "h": 113
+        }
+      },
+      {
+        "item": "viz_5MEYLTR3",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 430,
+          "w": 1440,
+          "h": 361
+        }
+      },
+      {
+        "item": "viz_wSvcqgY0",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 791,
+          "w": 551,
+          "h": 113
+        }
+      },
+      {
+        "item": "viz_pCfxClhO",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 904,
+          "w": 1440,
+          "h": 365
+        }
+      },
+      {
+        "item": "viz_spZKQcnU",
+        "type": "block",
+        "position": {
+          "x": 0,
+          "y": 1269,
+          "w": 551,
+          "h": 110
+        }
+      },
+      {
+        "item": "viz_jxeXFIrb",
+        "type": "block",
+        "position": {
+          "x": 551,
+          "y": 317,
+          "w": 429,
+          "h": 113
+        }
+      },
+      {
+        "item": "viz_pssIpM9c",
+        "type": "block",
+        "position": {
+          "x": 551,
+          "y": 791,
+          "w": 429,
+          "h": 113
+        }
+      },
+      {
+        "item": "viz_M6ovILcp",
+        "type": "block",
+        "position": {
+          "x": 551,
+          "y": 1269,
+          "w": 429,
+          "h": 110
+        }
+      },
+      {
+        "item": "viz_jh03G22a",
+        "type": "block",
+        "position": {
+          "x": 980,
+          "y": 317,
+          "w": 460,
+          "h": 113
+        }
+      },
+      {
+        "item": "viz_xkPEf5Ub",
+        "type": "block",
+        "position": {
+          "x": 980,
+          "y": 791,
+          "w": 460,
+          "h": 113
+        }
+      },
+      {
+        "item": "viz_E5YwuXmv",
+        "type": "block",
+        "position": {
+          "x": 980,
+          "y": 1269,
+          "w": 460,
+          "h": 110
+        }
+      }
+    ],
+    "globalInputs": []
+  },
+  "title": "SNMP",
+  "description": "",
+  "defaults": {
+    "dataSources": {
+      "ds.search": {
+        "options": {
+          "queryParameters": {
+            "latest": "$global_time.latest$",
+            "earliest": "$global_time.earliest$"
+          }
+        }
+      }
+    }
+  }
+}

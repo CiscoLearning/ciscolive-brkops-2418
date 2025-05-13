@@ -1,0 +1,47 @@
+splunk:
+  enabled: true
+  protocol: https
+  host: 198.18.134.22
+  token: 9af72e1a-a220-4fd0-b349-313ef7fdd40b
+  insecureSSL: "true"
+  port: "8088"
+UI:
+  enable: true
+  frontEnd:
+    NodePort: 30001
+    pullPolicy: "Always"
+  backEnd:
+    NodePort: 30002
+    pullPolicy: "Always"
+  valuesFileDirectory: "/home/cisco/sc4snmp-config/"
+  valuesFileName: ""
+  keepSectionFiles: true
+image:
+  pullPolicy: "Always"
+traps:
+  communities:
+    2c:
+      - CLUS25
+  loadBalancerIP: 198.18.134.22
+scheduler:
+  profiles: |
+    small_walk:
+      condition:
+        type: "walk"
+      varBinds:
+        - ["IF-MIB"]
+    CLUS25:
+      frequency: 60
+      varBinds:
+        - [ 'IF-MIB', 'ifName' ]
+        - [ 'IF-MIB', 'ifIndex' ]
+        - [ 'IF-MIB', 'ifInOctets' ]
+        - [ 'IF-MIB', 'ifOutOctets' ]
+        - [ 'IF-MIB', 'ifHCInUcastPkts' ]
+        - [ 'IF-MIB', 'ifOutUcastPkts' ]
+poller:
+  inventory: |
+    address,port,version,community,secret,securityEngine,walk_interval,profiles,smart_profiles,delete
+    198.18.180.101,,2c,CLUS25,,,1800,small_walk;CLUS25,,
+    198.18.180.102,,2c,CLUS25,,,1800,small_walk;CLUS25,,
+    198.18.180.103,,2c,CLUS25,,,1800,small_walk;CLUS25,,
