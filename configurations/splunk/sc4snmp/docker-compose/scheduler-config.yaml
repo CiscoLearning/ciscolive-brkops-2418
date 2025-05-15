@@ -1,0 +1,16 @@
+communities:
+  2c:
+    CLUS25:
+      communityIndex:
+      contextEngineId:
+      contextName:
+      tag:
+      securityName:
+profiles:
+  CLUS25:
+    frequency: 30
+    varBinds:
+      - ["IF-MIB", "ifDescr"]
+      - ["IF-MIB", "ifHCInUcastPkts"]
+      - ["IF-MIB", "ifHCOutUcastPkts"]
+

@@ -8,6 +8,26 @@ This repository will serve as a single source of information and follow-up for B
 
 The goal of this repository is to be a living document, rather than a snapshot of work in time.  If deploying any of the technologies covered in this session, it may be beneficial to bookmark this page as a continuing reference.
 
+## Installation
+
+To keep this landing README to a reasonable size, the respective installation guides for the specific network telemetry protocol are listed below, with separate guides.
+
+- [**Syslog**](./installations/SYSLOG.md)
+- [**NetFlow**](./installations/NETFLOW.md)
+- [**SNMP**](./installations/SNMP.md)
+- [**Model Driven Telemetry**](./installations/MDT.md) (*coming soon*)
+
+## Specific Notes
+
+### NetFlow
+
+- The Splunk Technical Add-ons (TAs) indicate that they support NetFlow v5/v9/IPFIX.  However, in my experience, while the data will be ingested if versions above 5 are used, the byte count will show as '0' in every flow event.  This affects any chart or visualization using these versions.  Because of this, v5 has been tested and validated to work.
+
+### SNMP
+
+- `sc4snmp` is supported for both `docker compose` and Kubernetes-based installations.  For Kubernetes-based installs, `microk8s` is documented within the official `sc4snmp` documentation, however it can be installed on any Kubernetes installation that supports Helm v3 charts.
+- `sc4snmp` polling data (interface statistics, etc) require
+
 ## Links
 
 ### SNMP Polling and Traps

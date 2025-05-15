@@ -1,0 +1,4 @@
+address,port,version,community,secret,securityEngine,walk_interval,profiles,smart_profiles,delete
+198.18.180.101,,2c,CLUS25,,,1800,CLUS25,,
+198.18.180.102,,2c,CLUS25,,,1800,CLUS25,,
+198.18.180.103,,2c,CLUS25,,,1800,CLUS25,,
