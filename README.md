@@ -1,4 +1,4 @@
-# BRKOPS-2418 | Cisco Live US 2025
+# BRKOPS-2418 | Cisco Live US 2026
 
 This repository will serve as a single source of information and follow-up for BRKOPS-2418 presented at CLUS2025.  While not completely canonical, the resources will include:
 
